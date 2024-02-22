@@ -1,0 +1,21 @@
+﻿@model CourseProject.Models.NewsPostViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <img class="card-img img-responsive" src="@Url.Content("~/images/" + Model.ImagePath)" alt="News Image" />
+            <p class="card-text">@Model.Content</p>
+            <a href="@Url.Action("Index", "NewsPost")" class="btn btn-primary">Назад до списку</a>
+            @if (User.IsInRole("менеджер"))
+            {
+                <a href="@Url.Action("Edit", "NewsPost", new { id = Model.Id })" class="btn btn-secondary">Редагувати</a>
+                <a href="@Url.Action("Delete", "NewsPost", new { id = Model.Id })" class="btn btn-danger">Видалити</a>
+            }
+            <small class="text-muted">Опубліковано @Model.PublishedOn.ToLocalTime().ToShortDateString()</small>
+        </div>
+    </div>
+</div>

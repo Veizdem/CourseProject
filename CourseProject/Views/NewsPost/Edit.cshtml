@@ -1,0 +1,35 @@
+﻿@model NewsPostViewModel
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Title">Заголовок</label>
+        <input class="form-control" asp-for="Title"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShortDescription">Короткий опис</label>
+        <textarea class="form-control" asp-for="ShortDescription"></textarea>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content">Текст новини</label>
+        <textarea class="form-control" asp-for="Content"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    @if (Model.ImagePath != null)
+    {
+        <div class="form-group">
+            <label>Поточне зображення</label>
+            <img src="@Url.Content("~/images/" + Model.ImagePath)" alt="Current Image" style="max-height: 200px;" />
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="ImageFile">Виберіть нове зображення (необов'язково)</label>
+        <input type="file" asp-for="ImageFile" class="form-control"/>
+    </div>
+    <input type="hidden" asp-for="ImagePath"/>
+    <input type="hidden" asp-for="PublishedOn"/>
+    <button type="submit" class="btn btn-primary">Редагувати</button>
+</form>

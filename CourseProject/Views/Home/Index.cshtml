@@ -1,0 +1,45 @@
+﻿@model CourseProject.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Головна";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Вітаємо!</h1>
+</div>
+
+<div class="row">
+    <h2>Випадкові ігри</h2>
+    @foreach (var game in Model.RandomBoardGames)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@game.Name</h5>
+                    <img class="card-img-top img-responsive" src="@Url.Content("~/images/gameImages/" + game.ImagePaths.FirstOrDefault() ?? "DefaultGameImage.png")" alt="Card image cap">
+                    <p class="card-text">@game.Description</p>
+                    <p class="card-subtitle">@game.Price.ToString("C")</p>
+                    <a href="@Url.Action("Details", "BoardGame", new { id = game.Id })" class="btn btn-primary">Детальіше...</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <h2>Останні новини</h2>
+    @foreach (var news in Model.LatestNewsPosts)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@news.Title</h5>
+                    <img class="card-img-top img-default" src="@Url.Content("~/images/" + news.ImagePath)" alt="News Image" />
+                    <p class="card-text">@news.ShortDescription</p>
+                    <a href="@Url.Action("Details", "NewsPost", new { id = news.Id })" class="btn btn-primary">Детальіше...</a>
+                    <small class="text-muted">@news.PublishedOn.ToLocalTime().ToShortDateString()</small>
+                </div>
+            </div>
+        </div>
+    }
+</div>

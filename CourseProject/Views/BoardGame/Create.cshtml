@@ -1,0 +1,28 @@
+﻿@model BoardGameViewModel
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" value="0"/>
+    <div class="form-group">
+        <label asp-for="Name">Назва</label>
+        <input class="form-control" asp-for="Name"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Опис</label>
+        <textarea class="form-control" asp-for="Description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price">Ціна</label>
+        <textarea class="form-control" asp-for="Price"></textarea>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageFiles">Зображення</label>
+        <input type="file" asp-for="ImageFiles" class="form-control" multiple/>
+    </div>
+    <input type="hidden" asp-for="ImagePaths" value=""/>
+    <br/>
+    <button type="submit" class="btn btn-primary">Додати гру</button>
+</form>

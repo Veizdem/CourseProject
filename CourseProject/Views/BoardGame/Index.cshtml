@@ -1,0 +1,77 @@
+﻿@model BoardGamesIndexViewModel
+
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<div class="container mt-3">
+    <h2>Каталог</h2>
+    @if (User.IsInRole("менеджер"))
+    {
+        <a href="@Url.Action("Create", "BoardGame")" class="btn btn-primary">Додати гру</a>
+    }
+    <p></p>
+    
+    @if (Model.BoardGames.Count > 0)
+    {
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })">Попередня</a>
+                    </li>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })">Наступна</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+        <div class="row">
+            @foreach (var games in Model.BoardGames)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                       <div class="card-body">
+                           <h5 class="card-title">@games.Name</h5>
+                           <img class="card-img-top img-responsive" src="@Url.Content("~/images/gameImages/" + games.ImagePaths.FirstOrDefault() ?? "DefaultGameImage.png")" alt="Card image cap">
+                            <p class="card-text">@games.Description</p>
+                            <p class="card-subtitle">@games.Price.ToString("C")</p>
+                            <a href="@Url.Action("Details", "BoardGame", new { id = games.Id })" class="btn btn-primary">Детальіше...</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })">Попередня</a>
+                    </li>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })">Наступна</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }
+    else
+    {
+        <p>Ігор ще немає</p>
+    }
+</div>

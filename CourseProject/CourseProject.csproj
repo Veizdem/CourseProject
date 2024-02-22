@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="wwwroot\images\2a299a53-714b-406b-b15c-45208181f795_1060-536x354-blur_2.jpg" />
+      <Content Remove="wwwroot\images\3e1c30c0-c355-4511-a8c8-6697f41ebc55_1084-536x354-grayscale.jpg" />
+      <Content Remove="wwwroot\images\7acb49c3-2ebd-4fe9-8355-b298d0607630_866-536x354.jpg" />
+      <Content Remove="wwwroot\images\09c39cbe-b1ee-4c38-85d8-a68a8f91b4d3_237-536x354.jpg" />
+      <Content Remove="wwwroot\images\41ef864b-d27e-49d9-8623-5bb1f6c56ef0_866-536x354.jpg" />
+      <Content Remove="wwwroot\images\50cbf289-589a-4eca-b7a2-64a7622ee559_237-536x354.jpg" />
+      <Content Remove="wwwroot\images\077f6eb3-eeb7-4644-9321-491f057e80d3_1084-536x354-grayscale.jpg" />
+      <Content Remove="wwwroot\images\834c0cbd-a642-4a88-95b5-542145add127_866-536x354.jpg" />
+      <Content Remove="wwwroot\images\65733f2d-fa48-4fa5-9ef2-820e6dbc312a_237-536x354.jpg" />
+      <Content Remove="wwwroot\images\b034dcea-f3b9-4c93-808b-b1fa34ef32ba_870-536x354-blur_2-grayscale.jpg" />
+      <Content Remove="wwwroot\images\d8ec148f-47fb-4108-b424-a4ef7dd15144_237-536x354.jpg" />
+      <Content Remove="wwwroot\images\e4bfd798-f1d7-4a4e-997d-5dbba028bbb5_237-536x354.jpg" />
+      <Content Remove="wwwroot\images\fbe198fd-bafc-4743-9c8b-8c5b60a56ca8_117-536x354.jpg" />
+      <Content Remove="wwwroot\images\gameImages\121dea0c-c965-4f0a-b2a5-a967be166410_nastilna-hra-aqua-56080538846906.webp" />
+      <Content Remove="wwwroot\images\gameImages\789b953e-9f50-4548-9f68-4ed0cde8b541_nastilna-hra-aqua-95873460081343.webp" />
+      <Content Remove="wwwroot\images\gameImages\b8f18fe7-a1eb-4a91-9309-2d9e88b90c1c_nastilna-hra-aqua-41150093126930.webp" />
+      <Content Remove="wwwroot\images\gameImages\cd3730f9-c558-487a-ae8c-3b43d940c2d7_nastilna-hra-fuse.-zvorotnyi-vidlik-fuse-countdown-33411921650277.webp" />
+    </ItemGroup>
+
+</Project>

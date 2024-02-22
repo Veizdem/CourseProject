@@ -1,0 +1,77 @@
+﻿@model NewsIndexViewModel
+
+@{
+    ViewData["Title"] = "Новини";
+}
+
+<div class="container mt-3">
+    <h2>Новини</h2>
+    @if (User.IsInRole("менеджер"))
+    {
+        <a href="@Url.Action("Create", "NewsPost")" class="btn btn-primary">Додати новину</a>
+    }
+    <p></p>
+    
+    @if (Model.News.Count > 0)
+    {
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })">Попередня</a>
+                    </li>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })">Наступна</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+        <div class="row">
+            @foreach (var news in Model.News)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                       <div class="card-body">
+                            <h5 class="card-title">@news.Title</h5>
+                            <img class="card-img-top img-default" src="@Url.Content("~/images/" + news.ImagePath)" alt="News Image" />
+                            <p class="card-text">@news.ShortDescription</p>
+                            <a href="@Url.Action("Details", "NewsPost", new { id = news.Id })" class="btn btn-primary">Детальіше...</a>
+                            <small class="text-muted">@news.PublishedOn.ToLocalTime().ToShortDateString()</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })">Попередня</a>
+                    </li>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })">Наступна</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }
+    else
+    {
+        <p>Новин ще немає</p>
+    }
+</div>

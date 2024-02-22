@@ -1,0 +1,28 @@
+﻿@model NewsPostViewModel
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" value="0"/>
+    <div class="form-group">
+        <label asp-for="Title">Заголовок</label>
+        <input class="form-control" asp-for="Title"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShortDescription">Короткий опис</label>
+        <textarea class="form-control" asp-for="ShortDescription"></textarea>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content">Текст новини</label>
+        <textarea class="form-control" asp-for="Content"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageFile">Зображення</label>
+        <input type="file" asp-for="ImageFile" class="form-control"/>
+    </div>
+    <input type="hidden" asp-for="ImagePath" value=""/>
+    <br/>
+    <button type="submit" class="btn btn-primary">Додати новину</button>
+</form>
